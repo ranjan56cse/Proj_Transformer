@@ -1,6 +1,24 @@
-.venv/
+# Python cache
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Logs and temp files
+*.log
+logs/
+*.out
+*.err
+
+# Model checkpoints
 *.pt
 *.pth
 checkpoints/
-logs/
+
+# Data (upload to Kaggle, not GitHub)
+data/
