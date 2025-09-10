@@ -112,7 +112,11 @@ class Decoder(nn.Module):
         # define the embedding
         self.embedding = nn.Embedding(target_vocab_size, embed_dim)
         # the positional embedding
-        self.positional_encoder = PositionalEncoding(embed_dim, seq_len)
+        self.positional_encoder = PositionalEncoding(
+          method="rope",
+          embed_dim=embed_dim,
+         max_seq_len=seq_len
+         )
 
         # define the set of decoders
         self.blocks = make_layer_stack(DecoderBlock(embed_dim, heads, expansion_factor, dropout), num_blocks)
