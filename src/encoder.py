@@ -1,5 +1,5 @@
 import torch.nn as nn
-from .utils import replicate
+from .utils import make_layer_stack
 from .attention import MultiHeadAttention
 from .embed import Embedding, PositionalEncoding
 
@@ -92,7 +92,7 @@ class Encoder(nn.Module):
 
         # define the set of blocks
         # so we will have 'num_blocks' stacked on top of each other
-        self.blocks = replicate(EncoderBlock(embed_dim=embed_dim, heads=heads, expansion_factor=expansion_factor, dropout=dropout), N=num_blocks)
+        self.blocks = make_layer_stack(EncoderBlock(embed_dim=embed_dim, heads=heads, expansion_factor=expansion_factor, dropout=dropout), N=num_blocks)
 
     def forward(self, x, mask=None):
         out = self.positional_encoder(self.embedding(x))
